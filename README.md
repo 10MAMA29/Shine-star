@@ -3,7 +3,7 @@
 A premium, trilingual (EN / 日本語 / 中文) portfolio for **Mutsumi Kuragane** —
 software developer, AI coding-evaluation specialist, and native Japanese language expert.
 
-🔗 **Live site:** https://10mama29.github.io/Shine-star/
+🔗 **Live site:** https://shine-star.vercel.app/
 
 ## Highlights
 
@@ -24,14 +24,15 @@ index.html          # structure
 css/style.css       # cosmic theme + animations
 js/i18n.js          # EN / JA / ZH translations
 js/main.js          # starfield, interactions, project rendering
-assets/favicon.svg  # star mark
-.github/workflows/  # auto-deploy to GitHub Pages
+assets/favicon.png  # brain-constellation mark
 ```
 
-## Deployment
+## Deployment (Vercel)
 
-Every push to `main` triggers the **GitHub Pages** workflow and republishes the site.
-In the repo: **Settings → Pages → Build and deployment → Source: GitHub Actions.**
+Hosted on **Vercel** as a static site (no build step). Connect the GitHub repo once
+in Vercel → **Add New… → Project → Import** `10MAMA29/Shine-star`; every push to `main`
+then redeploys automatically. To get the `shine-star.vercel.app` URL, set the Vercel
+**Project Name** to `shine-star` under **Project Settings → General**.
 
 ---
 

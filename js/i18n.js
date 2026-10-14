@@ -212,6 +212,3 @@ window.I18N = {
     "footer.built": "用心打造"
   }
 };
-
-/* Trilingual rotating greeting for the hero */
-window.GREETINGS = ["Hello", "こんにちは", "你好", "Bonjour", "Guten Tag", "안녕하세요"];

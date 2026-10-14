@@ -138,16 +138,6 @@
     btn.addEventListener("click", function () { applyLang(btn.getAttribute("data-lang")); });
   });
 
-  /* ---------- Hero rotating greeting ---------- */
-  var greetEl = document.getElementById("heroGreeting");
-  var gi = 0;
-  function rotateGreeting() {
-    if (!greetEl) return;
-    gi = (gi + 1) % window.GREETINGS.length;
-    greetEl.innerHTML = '<span class="greet-word">' + window.GREETINGS[gi] + "</span>";
-  }
-  setInterval(rotateGreeting, 2400);
-
   /* =========================================================
      Reveal on scroll
      ========================================================= */
