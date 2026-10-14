@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mutsumi Kuragane — Software Developer &amp; AI Coding Evaluation</title>
+  <meta name="description" content="Mutsumi Kuragane — Software developer with 8 years' experience, AI coding evaluation specialist, and native Japanese language expert. React, Next.js, TypeScript, Node.js, LLM / RAG / Agentic AI." />
+  <meta name="author" content="Mutsumi Kuragane" />
+  <meta name="theme-color" content="#05060f" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Mutsumi Kuragane — Software Developer &amp; AI Coding Evaluation" />
+  <meta property="og:description" content="8 years of software development · AI coding evaluation · Native Japanese language expertise." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=70" />
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;600;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===== Preloader ===== -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__star">
+      <svg viewBox="0 0 100 100" width="70" height="70" aria-hidden="true">
+        <path class="star-path" d="M50 3 L61 38 L98 38 L68 60 L79 96 L50 73 L21 96 L32 60 L2 38 L39 38 Z"/>
+      </svg>
+    </div>
+    <div class="preloader__text">SHINE&nbsp;·&nbsp;STAR</div>
+  </div>
+
+  <!-- ===== Scroll progress ===== -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- ===== Cursor glow ===== -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <!-- ===== Background canvas (starfield) ===== -->
+  <canvas id="starfield" class="starfield" aria-hidden="true"></canvas>
+  <div class="aurora" aria-hidden="true"></div>
+
+  <!-- ===== Navigation ===== -->
+  <header class="nav" id="nav">
+    <a href="#home" class="nav__brand" aria-label="Home">
+      <span class="nav__brand-mark">✦</span>
+      <span class="nav__brand-text">Mutsumi<span class="dot">.</span>K</span>
+    </a>
+
+    <nav class="nav__links" id="navLinks">
+      <a href="#about"    data-i18n="nav.about">About</a>
+      <a href="#skills"   data-i18n="nav.skills">Skills</a>
+      <a href="#work"     data-i18n="nav.work">Work</a>
+      <a href="#ai"       data-i18n="nav.ai">AI Eval</a>
+      <a href="#languages" data-i18n="nav.languages">Languages</a>
+      <a href="#contact"  data-i18n="nav.contact">Contact</a>
+    </nav>
+
+    <div class="nav__right">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button class="lang-btn is-active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ja">日本語</button>
+        <button class="lang-btn" data-lang="zh">中文</button>
+      </div>
+      <button class="nav__toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== Hero ===== -->
+    <section class="hero" id="home">
+      <div class="hero__inner">
+        <p class="hero__greeting" id="heroGreeting">
+          <span class="greet-word">Hello</span>
+        </p>
+
+        <h1 class="hero__name">
+          <span class="hero__name-en" data-i18n="hero.name">Mutsumi Kuragane</span>
+          <span class="hero__name-jp">倉金　睦</span>
+        </h1>
+
+        <h2 class="hero__role" id="heroRole" data-i18n="hero.role">
+          Software Developer &amp; AI Coding Evaluation Specialist
+        </h2>
+
+        <p class="hero__tagline" data-i18n="hero.tagline">
+          Eight years of building web &amp; application software — now bridging code,
+          language, and intelligence. I evaluate, craft, and refine with precision in
+          three languages.
+        </p>
+
+        <div class="hero__cta">
+          <a href="#work" class="btn btn--primary" data-i18n="hero.cta1">View my work</a>
+          <a href="#contact" class="btn btn--ghost" data-i18n="hero.cta2">Let's talk</a>
+        </div>
+
+        <div class="hero__chips">
+          <span class="chip">React · Next.js</span>
+          <span class="chip">TypeScript · Node</span>
+          <span class="chip">LLM · RAG · Agentic AI</span>
+          <span class="chip">🇯🇵 Native Japanese</span>
+        </div>
+      </div>
+
+      <a href="#about" class="hero__scroll" aria-label="Scroll down">
+        <span class="hero__scroll-dot"></span>
+        <span data-i18n="hero.scroll">Scroll</span>
+      </a>
+    </section>
+
+    <!-- ===== About ===== -->
+    <section class="section about" id="about">
+      <div class="section__head reveal">
+        <span class="section__kicker" data-i18n="about.kicker">01 — About</span>
+        <h2 class="section__title" data-i18n="about.title">A developer who speaks human &amp; machine</h2>
+      </div>
+
+      <div class="about__grid">
+        <div class="about__media reveal">
+          <div class="about__photo">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=75"
+                 alt="Workspace" loading="lazy" />
+            <div class="about__photo-glow"></div>
+          </div>
+          <div class="about__badge">
+            <strong>M.Sc.</strong>
+            <span data-i18n="about.badge">Tamkang University<br/>Web Dev &amp; AI</span>
+          </div>
+        </div>
+
+        <div class="about__body reveal">
+          <p data-i18n="about.p1">
+            I'm a software development professional with a master's degree from Tamkang
+            University, Taiwan, and eight years of hands-on experience across web, application,
+            data, database, and cloud engineering.
+          </p>
+          <p data-i18n="about.p2">
+            Today I combine that engineering foundation with native Japanese fluency and advanced
+            English &amp; Chinese to work at the intersection of software and AI — evaluating code,
+            assessing technical responses, and reviewing language quality for the next generation
+            of models.
+          </p>
+          <p data-i18n="about.p3">
+            My approach is practical: understand the requirement, choose the right technology,
+            and refine relentlessly for usability, correctness, and clarity.
+          </p>
+
+          <div class="stats">
+            <div class="stat">
+              <span class="stat__num" data-count="8" data-suffix="+">0</span>
+              <span class="stat__label" data-i18n="about.stat1">Years building</span>
+            </div>
+            <div class="stat">
+              <span class="stat__num" data-count="3">0</span>
+              <span class="stat__label" data-i18n="about.stat2">Languages</span>
+            </div>
+            <div class="stat">
+              <span class="stat__num" data-count="12" data-suffix="+">0</span>
+              <span class="stat__label" data-i18n="about.stat3">Live projects</span>
+            </div>
+            <div class="stat">
+              <span class="stat__num" data-count="100" data-suffix="%">0</span>
+              <span class="stat__label" data-i18n="about.stat4">Detail-obsessed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Showreel / Motion video ===== -->
+    <section class="showreel reveal" id="showreel" aria-label="In motion">
+      <video class="showreel__video" autoplay muted loop playsinline
+             poster="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=70">
+        <source src="https://videos.pexels.com/video-files/3141210/3141210-hd_1920_1080_25fps.mp4" type="video/mp4" />
+        <source src="https://videos.pexels.com/video-files/7710243/7710243-hd_1920_1080_30fps.mp4" type="video/mp4" />
+      </video>
+      <div class="showreel__overlay"></div>
+      <div class="showreel__content">
+        <h2 class="showreel__title" data-i18n="showreel.title">Code that moves. Craft that lasts.</h2>
+        <p class="showreel__text" data-i18n="showreel.text">
+          From frontend motion to backend reliability — building experiences that feel alive.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Skills ===== -->
+    <section class="section skills" id="skills">
+      <div class="section__head reveal">
+        <span class="section__kicker" data-i18n="skills.kicker">02 — Toolbox</span>
+        <h2 class="section__title" data-i18n="skills.title">Technologies I build &amp; evaluate with</h2>
+      </div>
+
+      <div class="skills__grid">
+        <div class="skill-card reveal">
+          <div class="skill-card__icon">🎨</div>
+          <h3 data-i18n="skills.c1.t">Frontend</h3>
+          <div class="skill-card__tags">
+            <span>React</span><span>Next.js</span><span>TypeScript</span><span>JavaScript</span>
+            <span>HTML5</span><span>Tailwind CSS</span><span>Sass/SCSS</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-card__icon">⚙️</div>
+          <h3 data-i18n="skills.c2.t">Backend</h3>
+          <div class="skill-card__tags">
+            <span>Node.js</span><span>NestJS</span><span>Express.js</span><span>PHP</span>
+            <span>Laravel</span><span>Java</span><span>Spring Boot</span><span>Python</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-card__icon">🗄️</div>
+          <h3 data-i18n="skills.c3.t">Databases</h3>
+          <div class="skill-card__tags">
+            <span>MySQL</span><span>PostgreSQL</span><span>MongoDB</span><span>Oracle</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-card__icon">☁️</div>
+          <h3 data-i18n="skills.c4.t">Cloud &amp; DevOps</h3>
+          <div class="skill-card__tags">
+            <span>AWS (EC2 · S3 · Lambda)</span><span>Docker</span><span>Vercel</span>
+            <span>Netlify</span><span>GitHub Actions</span><span>CI/CD</span>
+          </div>
+        </div>
+        <div class="skill-card reveal skill-card--wide">
+          <div class="skill-card__icon">🤖</div>
+          <h3 data-i18n="skills.c5.t">AI &amp; Language Tech</h3>
+          <div class="skill-card__tags">
+            <span>LLM Development</span><span>NLP</span><span>RAG</span>
+            <span>Agentic AI</span><span>Prompt &amp; Response Evaluation</span><span>ChatGPT</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-card__icon">🧩</div>
+          <h3 data-i18n="skills.c6.t">Design &amp; Practice</h3>
+          <div class="skill-card__tags">
+            <span>Figma</span><span>REST API Design</span><span>UI/UX</span>
+            <span>Workflow Automation</span><span>WordPress</span><span>Shopify</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Work / Projects ===== -->
+    <section class="section work" id="work">
+      <div class="section__head reveal">
+        <span class="section__kicker" data-i18n="work.kicker">03 — Selected work</span>
+        <h2 class="section__title" data-i18n="work.title">Projects &amp; references</h2>
+        <p class="section__note" data-i18n="work.note">
+          Live preview thumbnails are generated from the referenced sites. Shown as project
+          references; individual responsibilities may vary by engagement.
+        </p>
+      </div>
+
+      <div class="work__filters reveal">
+        <button class="filter-btn is-active" data-filter="all"       data-i18n="work.f.all">All</button>
+        <button class="filter-btn" data-filter="web"      data-i18n="work.f.web">Web Systems</button>
+        <button class="filter-btn" data-filter="ecommerce" data-i18n="work.f.ecom">E-Commerce</button>
+        <button class="filter-btn" data-filter="lp"        data-i18n="work.f.lp">Landing Pages</button>
+        <button class="filter-btn" data-filter="corporate" data-i18n="work.f.corp">Corporate</button>
+        <button class="filter-btn" data-filter="design"    data-i18n="work.f.design">Design</button>
+      </div>
+
+      <div class="work__grid" id="workGrid">
+        <!-- cards injected by JS -->
+      </div>
+    </section>
+
+    <!-- ===== AI Training & Evaluation ===== -->
+    <section class="section ai" id="ai">
+      <div class="section__head reveal">
+        <span class="section__kicker" data-i18n="ai.kicker">04 — AI training &amp; evaluation</span>
+        <h2 class="section__title" data-i18n="ai.title">Where engineering meets intelligence</h2>
+        <p class="section__note" data-i18n="ai.note">
+          How I apply software expertise and trilingual fluency to AI model training.
+        </p>
+      </div>
+
+      <div class="ai__grid">
+        <article class="ai-card reveal">
+          <span class="ai-card__no">01</span>
+          <h3 data-i18n="ai.c1.t">Code &amp; technical response evaluation</h3>
+          <p data-i18n="ai.c1.d">Assess code responses for logical consistency, technical correctness, and alignment with stated requirements.</p>
+        </article>
+        <article class="ai-card reveal">
+          <span class="ai-card__no">02</span>
+          <h3 data-i18n="ai.c2.t">Technical reasoning</h3>
+          <p data-i18n="ai.c2.d">Analyze alternative approaches, surface implementation weaknesses, and judge the clarity &amp; completeness of explanations.</p>
+        </article>
+        <article class="ai-card reveal">
+          <span class="ai-card__no">03</span>
+          <h3 data-i18n="ai.c3.t">Japanese language evaluation</h3>
+          <p data-i18n="ai.c3.d">Review Japanese outputs for naturalness, clarity, grammar, relevance, and instruction adherence — as a native speaker.</p>
+        </article>
+        <article class="ai-card reveal">
+          <span class="ai-card__no">04</span>
+          <h3 data-i18n="ai.c4.t">AI &amp; data-related tasks</h3>
+          <p data-i18n="ai.c4.d">Apply knowledge of AI-assisted workflows, data processing, and development to training &amp; evaluation tasks.</p>
+        </article>
+        <article class="ai-card reveal">
+          <span class="ai-card__no">05</span>
+          <h3 data-i18n="ai.c5.t">Quality &amp; guideline compliance</h3>
+          <p data-i18n="ai.c5.d">Follow task-specific instructions, apply criteria consistently, and communicate observations clearly &amp; structurally.</p>
+        </article>
+        <article class="ai-card reveal ai-card--cta">
+          <h3 data-i18n="ai.cta.t">Ready to contribute</h3>
+          <p data-i18n="ai.cta.d">Software engineering · AI coding evaluation · technical reasoning · Japanese quality assessment.</p>
+          <a href="#contact" class="btn btn--primary btn--sm" data-i18n="ai.cta.btn">Work with me</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== Languages ===== -->
+    <section class="section languages" id="languages">
+      <div class="section__head reveal">
+        <span class="section__kicker" data-i18n="lang.kicker">05 — Languages</span>
+        <h2 class="section__title" data-i18n="lang.title">Fluent across three worlds</h2>
+      </div>
+
+      <div class="lang__grid">
+        <div class="lang-card reveal" data-lang-demo="ja">
+          <div class="lang-card__flag">🇯🇵</div>
+          <h3>日本語 <span data-i18n="lang.japanese">Japanese</span></h3>
+          <span class="lang-card__level" data-i18n="lang.native">Native</span>
+          <div class="lang-bar"><i style="--w:100%"></i></div>
+          <p class="lang-card__sample">「細部へのこだわりが、信頼を生む。」</p>
+        </div>
+        <div class="lang-card reveal" data-lang-demo="en">
+          <div class="lang-card__flag">🇬🇧</div>
+          <h3>English</h3>
+          <span class="lang-card__level" data-i18n="lang.advanced">Advanced</span>
+          <div class="lang-bar"><i style="--w:90%"></i></div>
+          <p class="lang-card__sample">"Attention to detail builds trust."</p>
+        </div>
+        <div class="lang-card reveal" data-lang-demo="zh">
+          <div class="lang-card__flag">🇨🇳</div>
+          <h3>中文 <span data-i18n="lang.chinese">Chinese</span></h3>
+          <span class="lang-card__level" data-i18n="lang.advanced">Advanced</span>
+          <div class="lang-bar"><i style="--w:88%"></i></div>
+          <p class="lang-card__sample">「注重细节，方能赢得信任。」</p>
+        </div>
+      </div>
+
+      <!-- Education timeline -->
+      <div class="timeline reveal">
+        <h3 class="timeline__title" data-i18n="edu.title">Education</h3>
+        <div class="timeline__item">
+          <span class="timeline__year">2021</span>
+          <div>
+            <strong data-i18n="edu.1.t">M.Sc. — Web Development &amp; Artificial Intelligence</strong>
+            <span data-i18n="edu.1.d">Tamkang University, Taiwan · Graduated June 2021</span>
+          </div>
+        </div>
+        <div class="timeline__item">
+          <span class="timeline__year">BSc</span>
+          <div>
+            <strong data-i18n="edu.2.t">Information Engineering (IT &amp; AI studies)</strong>
+            <span data-i18n="edu.2.d">Faculty of Engineering · Tamkang University, Taiwan</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contact ===== -->
+    <section class="section contact" id="contact">
+      <div class="contact__inner reveal">
+        <span class="section__kicker" data-i18n="contact.kicker">06 — Contact</span>
+        <h2 class="contact__title" data-i18n="contact.title">Let's build &amp; evaluate something great</h2>
+        <p class="contact__text" data-i18n="contact.text">
+          Open to software engineering, AI coding evaluation, technical reasoning, and
+          Japanese-language quality work. Based in Kiryu, Gunma, Japan — available worldwide.
+        </p>
+
+        <div class="contact__links">
+          <a class="contact-link" href="mailto:kuraganemmm@gmail.com">
+            <span class="contact-link__ic">✉️</span>
+            <span><em data-i18n="contact.email">Email</em>kuraganemmm@gmail.com</span>
+          </a>
+          <a class="contact-link" href="https://kuragane-pro-dev.vercel.app" target="_blank" rel="noopener">
+            <span class="contact-link__ic">🌐</span>
+            <span><em data-i18n="contact.portfolio">Portfolio</em>kuragane-pro-dev.vercel.app</span>
+          </a>
+          <a class="contact-link" href="https://www.linkedin.com/in/%E7%9D%A6-%E5%80%89%E9%87%91-4b301a432" target="_blank" rel="noopener">
+            <span class="contact-link__ic">in</span>
+            <span><em>LinkedIn</em>倉金 睦</span>
+          </a>
+          <a class="contact-link" href="https://github.com/10MAMA29" target="_blank" rel="noopener">
+            <span class="contact-link__ic">⭐</span>
+            <span><em>GitHub</em>10MAMA29 / Shine-star</span>
+          </a>
+        </div>
+
+        <a href="mailto:kuraganemmm@gmail.com?subject=Project%20inquiry" class="btn btn--primary btn--lg" data-i18n="contact.btn">Start a conversation</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="footer__brand">✦ Mutsumi Kuragane</div>
+    <p data-i18n="footer.tag">Software Development · AI Coding Evaluation · Japanese Language Expertise</p>
+    <small>© <span id="year"></span> Mutsumi Kuragane · Kiryu, Gunma, Japan · <span data-i18n="footer.built">Crafted with care</span></small>
+  </footer>
+
+  <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
