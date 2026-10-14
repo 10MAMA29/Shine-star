@@ -3,7 +3,7 @@
 A premium, trilingual (EN / 日本語 / 中文) portfolio for **Mutsumi Kuragane** —
 software developer, AI coding-evaluation specialist, and native Japanese language expert.
 
-🔗 **Live site:** https://shine-star.vercel.app/
+🔗 **Live site:** https://shine-star-mk.vercel.app/
 
 ## Highlights
 
@@ -31,8 +31,8 @@ assets/favicon.png  # brain-constellation mark
 
 Hosted on **Vercel** as a static site (no build step). Connect the GitHub repo once
 in Vercel → **Add New… → Project → Import** `10MAMA29/Shine-star`; every push to `main`
-then redeploys automatically. To get the `shine-star.vercel.app` URL, set the Vercel
-**Project Name** to `shine-star` under **Project Settings → General**.
+then redeploys automatically. To get the `shine-star-mk.vercel.app` URL, set the Vercel
+**Project Name** to `shine-star-mk` under **Project Settings → General**.
 
 ---
 
