@@ -235,25 +235,49 @@
   var canvas = document.getElementById("starfield");
   if (canvas && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     var ctx = canvas.getContext("2d");
-    var stars = [], shooting = [], W, H, DPR = Math.min(window.devicePixelRatio || 1, 2);
+    var stars = [], nodes = [], shooting = [], guide = null;
+    var W, H, DPR = Math.min(window.devicePixelRatio || 1, 2);
+    var pmx = 0, pmy = 0, tmx = 0, tmy = 0;      // eased / target parallax
+
+    function rand(a, b) { return a + Math.random() * (b - a); }
 
     function resize() {
       W = canvas.width = window.innerWidth * DPR;
       H = canvas.height = window.innerHeight * DPR;
       canvas.style.width = window.innerWidth + "px";
       canvas.style.height = window.innerHeight + "px";
-      var count = Math.min(220, Math.floor((window.innerWidth * window.innerHeight) / 7000));
+      var area = window.innerWidth * window.innerHeight;
+
+      // --- Twinkling star dust, layered by depth (z: far 0.25 → near 1) ---
+      var count = Math.min(200, Math.floor(area / 8200));
       stars = [];
       for (var i = 0; i < count; i++) {
+        var z = rand(0.25, 1);
         stars.push({
-          x: Math.random() * W, y: Math.random() * H,
-          r: Math.random() * 1.5 * DPR + 0.3,
-          a: Math.random(), tw: Math.random() * 0.02 + 0.004,
-          dx: (Math.random() - 0.5) * 0.08 * DPR,
-          dy: (Math.random() - 0.5) * 0.08 * DPR,
-          hue: Math.random() > 0.8 ? 46 : (Math.random() > 0.5 ? 255 : 190)
+          x: Math.random() * W, y: Math.random() * H, z: z,
+          r: (rand(0.3, 1.4) * z + 0.2) * DPR,
+          a: Math.random(), tw: rand(0.004, 0.022),
+          dx: (Math.random() - 0.5) * 0.07 * z * DPR,
+          dy: (Math.random() - 0.5) * 0.07 * z * DPR,
+          hue: Math.random() > 0.82 ? 46 : (Math.random() > 0.5 ? 255 : 190)
         });
       }
+
+      // --- Brighter constellation nodes that link into a living star-map ---
+      var ncount = Math.min(60, Math.floor(area / 26000));
+      nodes = [];
+      for (var k = 0; k < ncount; k++) {
+        var nz = rand(0.55, 1);
+        nodes.push({
+          x: Math.random() * W, y: Math.random() * H, z: nz,
+          r: rand(1.1, 2.1) * nz * DPR,
+          vx: (Math.random() - 0.5) * 0.12 * DPR,
+          vy: (Math.random() - 0.5) * 0.12 * DPR
+        });
+      }
+
+      // --- The guiding "Shine Star" ---
+      guide = { x: W * 0.5, y: H * 0.27, r: 2.6 * DPR, phase: 0 };
     }
 
     function spawnShoot() {
@@ -267,21 +291,77 @@
       }
     }
 
+    var LINK = 128 * DPR;                       // node-link distance threshold
+
     function draw() {
       ctx.clearRect(0, 0, W, H);
+      pmx += (tmx - pmx) * 0.045; pmy += (tmy - pmy) * 0.045;
+
+      // Star dust
       for (var i = 0; i < stars.length; i++) {
         var s = stars[i];
         s.a += s.tw;
-        var alpha = 0.4 + Math.abs(Math.sin(s.a)) * 0.6;
+        var alpha = 0.35 + Math.abs(Math.sin(s.a)) * 0.6;
         s.x += s.dx; s.y += s.dy;
         if (s.x < 0) s.x = W; if (s.x > W) s.x = 0;
         if (s.y < 0) s.y = H; if (s.y > H) s.y = 0;
+        var ox = pmx * 26 * s.z * DPR, oy = pmy * 26 * s.z * DPR;
         var col = s.hue === 46 ? "255,209,102" : s.hue === 190 ? "0,224,255" : "230,235,255";
         ctx.beginPath();
         ctx.fillStyle = "rgba(" + col + "," + alpha + ")";
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.arc(s.x + ox, s.y + oy, s.r, 0, Math.PI * 2);
         ctx.fill();
       }
+
+      // Guiding star bloom
+      if (guide) {
+        guide.phase += 0.015;
+        var gx = guide.x + pmx * 40 * DPR, gy = guide.y + pmy * 40 * DPR;
+        var pulse = 0.6 + Math.abs(Math.sin(guide.phase)) * 0.4;
+        var halo = ctx.createRadialGradient(gx, gy, 0, gx, gy, 90 * DPR * pulse);
+        halo.addColorStop(0, "rgba(124,92,255," + (0.5 * pulse) + ")");
+        halo.addColorStop(0.4, "rgba(0,224,255," + (0.14 * pulse) + ")");
+        halo.addColorStop(1, "rgba(124,92,255,0)");
+        ctx.fillStyle = halo;
+        ctx.beginPath(); ctx.arc(gx, gy, 90 * DPR * pulse, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath();
+        ctx.fillStyle = "rgba(255,255,255," + (0.85 * pulse) + ")";
+        ctx.arc(gx, gy, guide.r, 0, Math.PI * 2); ctx.fill();
+      }
+
+      // Constellation network
+      for (var n = 0; n < nodes.length; n++) {
+        var a = nodes[n];
+        a.x += a.vx; a.y += a.vy;
+        if (a.x < 0) a.x = W; if (a.x > W) a.x = 0;
+        if (a.y < 0) a.y = H; if (a.y > H) a.y = 0;
+        a.sx = a.x + pmx * 44 * a.z * DPR;
+        a.sy = a.y + pmy * 44 * a.z * DPR;
+      }
+      for (var p = 0; p < nodes.length; p++) {
+        for (var q = p + 1; q < nodes.length; q++) {
+          var dx = nodes[p].sx - nodes[q].sx, dy = nodes[p].sy - nodes[q].sy;
+          var d = Math.sqrt(dx * dx + dy * dy);
+          if (d < LINK) {
+            var la = (1 - d / LINK) * 0.5;
+            ctx.strokeStyle = "rgba(124,92,255," + la + ")";
+            ctx.lineWidth = DPR * 0.6;
+            ctx.beginPath();
+            ctx.moveTo(nodes[p].sx, nodes[p].sy);
+            ctx.lineTo(nodes[q].sx, nodes[q].sy);
+            ctx.stroke();
+          }
+        }
+      }
+      for (var m = 0; m < nodes.length; m++) {
+        var b = nodes[m];
+        ctx.beginPath();
+        ctx.fillStyle = "rgba(180,200,255,0.85)";
+        ctx.arc(b.sx, b.sy, b.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Shooting stars
       spawnShoot();
       for (var j = shooting.length - 1; j >= 0; j--) {
         var sh = shooting[j];
@@ -298,6 +378,13 @@
         if (sh.life <= 0 || sh.x > W || sh.y > H) shooting.splice(j, 1);
       }
       requestAnimationFrame(draw);
+    }
+
+    if (window.matchMedia("(pointer:fine)").matches) {
+      window.addEventListener("mousemove", function (e) {
+        tmx = (e.clientX / window.innerWidth) * 2 - 1;
+        tmy = (e.clientY / window.innerHeight) * 2 - 1;
+      });
     }
 
     resize();

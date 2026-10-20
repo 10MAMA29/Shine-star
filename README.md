@@ -7,24 +7,30 @@ software developer, AI coding-evaluation specialist, and native Japanese languag
 
 ## Highlights
 
-- 🌌 **Animated starfield canvas** hero with shooting stars and aurora glow
+- 🌌 **Original "Constellation of Craft" background** — a hand-authored deep-space
+  nebula (SVG) with a living star-map: depth parallax, nodes that link into
+  constellations, and a pulsing guiding star
+- 🧠 **Per-section star motifs** that echo each section's meaning (a neural net for
+  AI, three linked clusters for Languages, circuits for Skills, a node grid for Work)
 - 🌐 **Real EN / 日本語 / 中文 language switcher** (full i18n, remembers your choice)
-- 🎞️ **Cinematic video showreel** section
+- 🎞️ **Self-authored "code that moves" showreel** — animated, no stock media
 - 🖼️ **Live project thumbnails** generated from the referenced sites
 - ✨ Scroll-reveal animations, count-up stats, filterable project grid, cursor glow
-- 📱 Fully responsive · ♿ respects `prefers-reduced-motion`
+- 📱 Fully responsive · ♿ respects `prefers-reduced-motion` (static nebula fallback)
 
 ## Tech
 
 Pure, dependency-free **HTML + CSS + vanilla JavaScript** — no build step.
-Fonts via Google Fonts; images via Unsplash; live screenshots via thum.io; video via Pexels.
+All backgrounds are self-authored (SVG nebula + canvas star-map + CSS); fonts via
+Google Fonts; live project screenshots via thum.io.
 
 ```
-index.html          # structure
-css/style.css       # cosmic theme + animations
-js/i18n.js          # EN / JA / ZH translations
-js/main.js          # starfield, interactions, project rendering
-assets/favicon.png  # brain-constellation mark
+index.html           # structure
+css/style.css         # cosmic theme + background system + animations
+js/i18n.js            # EN / JA / ZH translations
+js/main.js            # star-map canvas, interactions, project rendering
+assets/bg-nebula.svg  # original deep-space nebula background
+assets/favicon.png    # brain-constellation mark
 ```
 
 ## Deployment (Vercel)

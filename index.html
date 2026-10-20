@@ -175,13 +175,18 @@
       </div>
     </section>
 
-    <!-- ===== Showreel / Motion video ===== -->
+    <!-- ===== Showreel / Motion ===== -->
     <section class="showreel reveal" id="showreel" aria-label="In motion">
-      <video class="showreel__video" autoplay muted loop playsinline
-             poster="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=70">
-        <source src="https://videos.pexels.com/video-files/3141210/3141210-hd_1920_1080_25fps.mp4" type="video/mp4" />
-        <source src="https://videos.pexels.com/video-files/7710243/7710243-hd_1920_1080_30fps.mp4" type="video/mp4" />
-      </video>
+      <!-- Original self-authored "code that moves" background (no stock media) -->
+      <div class="showreel__bg" aria-hidden="true">
+        <svg class="showreel__streams" viewBox="0 0 1200 560" preserveAspectRatio="xMidYMid slice">
+          <g stroke="#7c5cff"  style="color:#7c5cff"><path d="M-40 90 C 260 40, 520 170, 820 110 S 1180 60, 1260 150"/></g>
+          <g stroke="#00e0ff"  style="color:#00e0ff"><path d="M-40 220 C 300 300, 560 150, 860 260 S 1160 320, 1260 240"/></g>
+          <g stroke="#ff6ec7"  style="color:#ff6ec7"><path d="M-40 360 C 240 300, 540 430, 840 360 S 1150 300, 1260 380"/></g>
+          <g stroke="#ffd166"  style="color:#ffd166"><path d="M-40 470 C 320 520, 600 400, 880 480 S 1160 540, 1260 460"/></g>
+          <g stroke="#9a7bff"  style="color:#9a7bff"><path d="M-40 150 C 360 200, 640 60, 900 160 S 1170 210, 1260 120"/></g>
+        </svg>
+      </div>
       <div class="showreel__overlay"></div>
       <div class="showreel__content">
         <h2 class="showreel__title" data-i18n="showreel.title">Code that moves. Craft that lasts.</h2>
@@ -193,6 +198,15 @@
 
     <!-- ===== Skills ===== -->
     <section class="section skills" id="skills">
+      <svg class="const-motif const-motif--skills" viewBox="0 0 160 160" aria-hidden="true">
+        <g class="link">
+          <path d="M30 30 90 30 M90 30 90 90 M90 90 30 90 M30 90 30 30 M90 30 130 60 M90 90 130 60 M130 60 130 120 M90 90 60 130"/>
+        </g>
+        <g class="node">
+          <circle cx="30" cy="30" r="3.4"/><circle cx="90" cy="30" r="3.4"/><circle cx="30" cy="90" r="3.4"/>
+          <circle cx="90" cy="90" r="4"/><circle cx="130" cy="60" r="3.4"/><circle cx="130" cy="120" r="3"/><circle cx="60" cy="130" r="3"/>
+        </g>
+      </svg>
       <div class="section__head reveal">
         <span class="section__kicker" data-i18n="skills.kicker">02 — Toolbox</span>
         <h2 class="section__title" data-i18n="skills.title">Technologies I build &amp; evaluate with</h2>
@@ -251,6 +265,16 @@
 
     <!-- ===== Work / Projects ===== -->
     <section class="section work" id="work">
+      <svg class="const-motif const-motif--work" viewBox="0 0 150 150" aria-hidden="true">
+        <g class="link">
+          <path d="M25 25 75 20 M75 20 125 30 M25 25 35 75 M75 20 80 72 M125 30 120 80 M35 75 80 72 M80 72 120 80 M35 75 45 125 M80 72 90 128"/>
+        </g>
+        <g class="node">
+          <circle cx="25" cy="25" r="3.2"/><circle cx="75" cy="20" r="3.6"/><circle cx="125" cy="30" r="3.2"/>
+          <circle cx="35" cy="75" r="3.2"/><circle cx="80" cy="72" r="4"/><circle cx="120" cy="80" r="3.2"/>
+          <circle cx="45" cy="125" r="3"/><circle cx="90" cy="128" r="3"/>
+        </g>
+      </svg>
       <div class="section__head reveal">
         <span class="section__kicker" data-i18n="work.kicker">03 — Selected work</span>
         <h2 class="section__title" data-i18n="work.title">Projects &amp; references</h2>
@@ -276,6 +300,18 @@
 
     <!-- ===== AI Training & Evaluation ===== -->
     <section class="section ai" id="ai">
+      <svg class="const-motif const-motif--ai" viewBox="0 0 200 150" aria-hidden="true">
+        <g class="link">
+          <path d="M22 40 110 24 M22 40 108 70 M22 40 112 116 M22 80 110 24 M22 80 108 70 M22 80 112 116 M22 120 108 70 M22 120 112 116
+                   M110 24 180 52 M110 24 180 100 M108 70 180 52 M108 70 180 100 M112 116 180 100 M112 116 180 52"/>
+        </g>
+        <g class="node">
+          <circle cx="22" cy="40" r="3.2"/><circle cx="22" cy="80" r="3.2"/><circle cx="22" cy="120" r="3.2"/>
+          <circle cx="110" cy="24" r="3.6"/><circle cx="108" cy="70" r="3.6"/><circle cx="112" cy="116" r="3.6"/>
+          <circle cx="180" cy="52" r="4"/><circle cx="180" cy="100" r="4"/>
+        </g>
+        <circle class="halo" cx="108" cy="70" r="20"/>
+      </svg>
       <div class="section__head reveal">
         <span class="section__kicker" data-i18n="ai.kicker">04 — AI training &amp; evaluation</span>
         <h2 class="section__title" data-i18n="ai.title">Where engineering meets intelligence</h2>
@@ -320,6 +356,19 @@
 
     <!-- ===== Languages ===== -->
     <section class="section languages" id="languages">
+      <svg class="const-motif const-motif--lang" viewBox="0 0 400 120" aria-hidden="true">
+        <g class="link">
+          <path d="M70 46 60 78 M60 78 92 70 M92 70 70 46 M70 46 92 70
+                   M200 34 186 70 M186 70 220 72 M220 72 212 40 M200 34 220 72
+                   M330 48 318 80 M318 80 350 74 M350 74 338 44 M330 48 350 74
+                   M92 70 186 70 M220 72 318 80"/>
+        </g>
+        <g class="node">
+          <circle cx="70" cy="46" r="3"/><circle cx="60" cy="78" r="3"/><circle cx="92" cy="70" r="3.6"/>
+          <circle cx="200" cy="34" r="3"/><circle cx="186" cy="70" r="3.6"/><circle cx="220" cy="72" r="3"/><circle cx="212" cy="40" r="3"/>
+          <circle cx="330" cy="48" r="3"/><circle cx="318" cy="80" r="3.6"/><circle cx="350" cy="74" r="3"/><circle cx="338" cy="44" r="3"/>
+        </g>
+      </svg>
       <div class="section__head reveal">
         <span class="section__kicker" data-i18n="lang.kicker">05 — Languages</span>
         <h2 class="section__title" data-i18n="lang.title">Fluent across three worlds</h2>
