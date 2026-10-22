@@ -117,15 +117,45 @@ main,.nav,.footer{position:relative;z-index:2}
    Per-section constellation motifs + colour harmonics
    ========================================================= */
 .section{position:relative}
+/* Full-bleed section backdrop: a themed photo held well beneath a dark scrim + colour glow */
 .section::before{
-  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.9;
+  content:"";position:absolute;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);
+  z-index:-1;pointer-events:none;
+  background-repeat:no-repeat;background-position:center;background-size:cover;
 }
-.about::before{background:radial-gradient(42% 60% at 88% 18%,rgba(124,92,255,.10),transparent 60%)}
-.skills::before{background:radial-gradient(46% 55% at 8% 20%,rgba(0,224,255,.10),transparent 60%)}
-.work::before{background:radial-gradient(44% 55% at 92% 30%,rgba(255,209,102,.08),transparent 60%)}
-.ai::before{background:radial-gradient(48% 62% at 50% 0%,rgba(124,92,255,.13),transparent 62%)}
-.languages::before{background:radial-gradient(50% 55% at 50% 10%,rgba(255,110,199,.09),transparent 60%)}
-.contact::before{background:radial-gradient(60% 70% at 50% 120%,rgba(0,224,255,.12),transparent 60%)}
+/* About keeps a pure colour glow — its photo lives in-content */
+.about::before{background-image:radial-gradient(42% 60% at 88% 18%,rgba(124,92,255,.10),transparent 60%)}
+
+.skills::before{
+  background-image:
+    linear-gradient(180deg,rgba(5,6,15,.90),rgba(5,6,15,.83)),
+    radial-gradient(46% 55% at 8% 20%,rgba(0,224,255,.14),transparent 60%),
+    url("../assets/bg-skills.jpg");
+}
+.work::before{
+  background-image:
+    linear-gradient(180deg,rgba(5,6,15,.90),rgba(5,6,15,.83)),
+    radial-gradient(44% 55% at 92% 30%,rgba(255,209,102,.10),transparent 60%),
+    url("../assets/bg-work.jpg");
+}
+.ai::before{
+  background-image:
+    linear-gradient(180deg,rgba(5,6,15,.86),rgba(5,6,15,.80)),
+    radial-gradient(48% 62% at 50% 0%,rgba(124,92,255,.16),transparent 62%),
+    url("../assets/bg-ai.jpg");
+}
+.languages::before{
+  background-image:
+    linear-gradient(180deg,rgba(5,6,15,.90),rgba(5,6,15,.83)),
+    radial-gradient(50% 55% at 50% 10%,rgba(255,110,199,.12),transparent 60%),
+    url("../assets/bg-languages.jpg");
+}
+.contact::before{
+  background-image:
+    linear-gradient(180deg,rgba(5,6,15,.88),rgba(5,6,15,.91)),
+    radial-gradient(60% 70% at 50% 120%,rgba(0,224,255,.14),transparent 60%),
+    url("../assets/bg-contact.jpg");
+}
 
 /* Decorative star-map motif that harmonises with each section's meaning */
 .const-motif{
@@ -211,7 +241,17 @@ main,.nav,.footer{position:relative;z-index:2}
   min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:120px clamp(18px,5vw,40px) 80px;position:relative;
 }
-.hero__inner{max-width:900px;animation:fadeUp 1s var(--ease) both}
+/* Photographic hero backdrop (team collaboration) tucked beneath the starfield */
+.hero::before{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(70% 90% at 50% 42%,rgba(5,6,15,.52),rgba(5,6,15,.8) 78%,rgba(5,6,15,.96)),
+    linear-gradient(180deg,rgba(5,6,15,.7) 0%,rgba(5,6,15,.5) 46%,rgba(5,6,15,.92) 100%),
+    url("../assets/bg-hero.jpg") center 32%/cover no-repeat;
+  -webkit-mask-image:linear-gradient(180deg,#000 72%,transparent 100%);
+          mask-image:linear-gradient(180deg,#000 72%,transparent 100%);
+}
+.hero__inner{max-width:900px;animation:fadeUp 1s var(--ease) both;position:relative;z-index:1}
 .hero__greeting{
   font-family:var(--font-display);font-size:1.1rem;letter-spacing:.3em;text-transform:uppercase;
   margin-bottom:22px;min-height:1.4em;color:var(--primary-2);
@@ -306,14 +346,19 @@ main,.nav,.footer{position:relative;z-index:2}
 /* =========================================================
    Showreel video
    ========================================================= */
-.showreel{position:relative;height:clamp(340px,60vh,560px);display:flex;align-items:center;justify-content:center;overflow:hidden;margin:20px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-/* Original "code that moves" background — fully self-authored, no stock media */
+.showreel{position:relative;height:clamp(340px,60vh,560px);display:flex;align-items:center;justify-content:center;overflow:hidden;margin:20px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:#07102a}
+/* Photographic base — real development work, held in the cosmic palette */
+.showreel__photo{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%;
+  opacity:.6;filter:saturate(1.05) contrast(1.02);
+}
+/* "Code that moves" colour wash + streams, layered over the photo */
 .showreel__bg{position:absolute;inset:0;overflow:hidden;
   background:
     radial-gradient(60% 120% at 12% 0%,rgba(124,92,255,.5),transparent 55%),
-    radial-gradient(55% 120% at 88% 100%,rgba(0,224,255,.42),transparent 55%),
-    radial-gradient(40% 90% at 60% 50%,rgba(255,110,199,.22),transparent 60%),
-    linear-gradient(120deg,#090a20 0%,#12123a 45%,#07142e 100%);
+    radial-gradient(55% 120% at 88% 100%,rgba(0,224,255,.4),transparent 55%),
+    radial-gradient(40% 90% at 60% 50%,rgba(255,110,199,.2),transparent 60%),
+    linear-gradient(120deg,rgba(9,10,32,.55) 0%,rgba(18,18,58,.4) 45%,rgba(7,20,46,.6) 100%);
 }
 .showreel__bg::after{
   content:"";position:absolute;inset:-20%;
